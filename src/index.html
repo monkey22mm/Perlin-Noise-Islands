@@ -1,0 +1,40 @@
+<!--
+Title: Javascript Perlin Noise Implementation Island Simulation
+Author: Liam Speakman
+Notes: N/A
+Copyright (C) 2017 Liam Speakman <lspeakman001@gmail.com>
+You are free to copy, redistribute, and modify this work with no permission from the author 
+-->
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Islands</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body oncontextmenu="return false">
+	<div style="width:1280px; height:720px; margin: 0 auto; padding: 5px;"> 
+	<canvas id="canvas" width="1280" height="720"></canvas>
+		<script src="src.js"></script>
+		
+		<script>
+		window.onload = function(){
+			var canvas = document.getElementById('canvas'),
+				context = canvas.getContext('2d');			
+				context.imageSmoothingEnabled= false;
+				context.mozImageSmoothingEnabled = false;
+				
+				init();
+				//update method 30 ticks per sec 1000/30
+				setInterval(function() {update();}, 1000/30);
+				//render islands
+			(function drawFrame(){
+				window.requestAnimationFrame(drawFrame,canvas);
+				context.clearRect(0,0,canvas.width,canvas.height);
+				render(context);
+			}());
+				
+			};
+		</script>
+		
+	</body>
